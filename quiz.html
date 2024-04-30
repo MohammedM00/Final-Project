@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purdue Quiz</title>
+    <link rel="stylesheet" href="stylequiz.css">
+</head>
+<body>
+    <h1>Purdue Quiz</h1>
+
+    <div id="quiz">
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="submit">Submit Answer</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the primary role of a Network Administrator?",
+                options: ["Developing software applications", "Analyzing and interpreting data", "Managing and maintaining computer networks", "Designing cybersecurity protocols"],
+                answer: "Managing and maintaining computer networks"
+            },
+            {
+                question: "Which career focuses on developing software applications for various platforms?",
+                options: ["Data Research Scientist", "Cybersecurity Expert", "Software Developer", "Network Administrator"],
+                answer: "Software Developer"
+            },
+            {
+                question: "What is the primary responsibility of a Data Research Scientist?",
+                options: ["Designing network infrastructure", "Managing database systems", "Developing algorithms for data analysis", "Ensuring network security"],
+                answer: "Developing algorithms for data analysis"
+            },
+            {
+                question: "Which career specializes in protecting computer systems and networks from unauthorized access or cyberattacks?",
+                options: ["Network Administrator", "Chief Information Officer", "Cybersecurity Expert", "Data Research Scientist"],
+                answer: "Cybersecurity Expert"
+            },
+            {
+                question: "What role involves overseeing the overall information technology strategy and operations of an organization?",
+                options: ["Network Architect", "Chief Information Officer", "Data Research Scientist", "Software Developer"],
+                answer: "Chief Information Officer"
+            },
+            {
+                question: "Which career focuses on designing and implementing computer networks?",
+                options: ["Data Research Scientist", "Network Architect", "Cybersecurity Expert", "Software Developer"],
+                answer: "Network Architect"
+            },
+            {
+                question: "What is the main responsibility of a Software Developer?",
+                options: ["Managing databases", "Designing network infrastructure", "Developing software applications", "Analyzing data for insights"],
+                answer: "Developing software applications"
+            },
+            {
+                question: "Which career involves analyzing complex data sets to identify trends and patterns?",
+                options: ["Cybersecurity Expert", "Data Research Scientist", "Network Administrator", "Software Developer"],
+                answer: "Data Research Scientist"
+            },
+            {
+                question: "What role involves configuring and maintaining servers and other network devices?",
+                options: ["Network Administrator", "Chief Information Officer", "Network Architect", "Cybersecurity Expert"],
+                answer: "Network Administrator"
+            },
+            {
+                question: "Which career focuses on developing and maintaining databases for storing and retrieving data?",
+                options: ["Data Research Scientist", "Software Developer", "Network Administrator", "Database Administrator"],
+                answer: "Database Administrator"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const quiz = document.getElementById("quiz");
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        const submitButton = document.getElementById("submit");
+        const resultElement = document.getElementById("result");
+
+        function showQuestion() {
+            const current = questions[currentQuestion];
+            questionElement.textContent = current.question;
+
+            optionsElement.innerHTML = "";
+            current.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.addEventListener("click", () => checkAnswer(option));
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(answer) {
+            const current = questions[currentQuestion];
+            if (answer === current.answer) {
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quiz.style.display = "none";
+            resultElement.textContent = `You scored ${score} out of ${questions.length}!`;
+        }
+
+        showQuestion();
+    </script>
+</body>
+</html>

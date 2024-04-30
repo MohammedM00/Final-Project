@@ -1,0 +1,24 @@
+// Define colors using variables
+$primary-color: #C28E0E; // Purdue Gold
+$secondary-color: #FFF; // White
+$background-color: #F1F2F2; // Background color
+$text-color: #000; // Black text color
+
+// Navigation bar styles
+.navbar {
+    background-color: $primary-color;
+}
+
+.navbar-brand {
+    color: $secondary-color;
+}
+
+.navbar-nav .nav-link {
+    color: $secondary-color;
+}
+
+// Body styles
+body {
+    background-color: $background-color;
+    color: $text-color;
+}
